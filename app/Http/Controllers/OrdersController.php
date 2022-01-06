@@ -11,7 +11,7 @@ class OrdersController extends Controller
     //     return $this->belongsTo(User::class);
     // }
     public function index(){
-        $orders = Order::where('status', 1)->get();
+        $orders = Order::active()->paginate(5);
         return view('auth.orders.index', compact('orders'));
     }
     public function order (Order $order){

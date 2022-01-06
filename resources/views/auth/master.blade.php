@@ -16,8 +16,10 @@
     <!-- Styles -->
     
     <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet">
+    <link href="/css/starter-template.css" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">
@@ -54,30 +56,27 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item dropdown">
                             @admin
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ route('orders')}}" role="button"
                                data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false" v-pre>
                                 Администратор 
                             </a>
                             @else 
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ route('person.orders.index')}}" role="button"
                                data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false" v-pre>
                                 Мои заказы
                             </a>
                             @endadmin
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout')}}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                        </li>
+                        <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle"  href="{{ route('logout')}}">
                                     Выйти
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout')}}" method="POST"
                                       style="display: none;">
                                     @csrf
                                 </form>
-                            </div>
                         </li>
                     </ul>
                 @endauth

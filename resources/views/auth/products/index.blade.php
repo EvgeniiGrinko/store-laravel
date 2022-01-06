@@ -3,6 +3,8 @@
 @section('title', 'Товары')
 
 @section('content')
+
+
     <div class="col-md-12">
         <h1>Товары</h1>
         <table class="table">
@@ -52,7 +54,9 @@
             @endforeach
             </tbody>
         </table>
-        {{-- {{ $products->links() }} --}}
+       
         <a class="btn btn-success" type="button" href="{{ route('products.create') }}">Добавить товар</a>
+        {{ $products->links() }}
     </div>
+  
 @endsection

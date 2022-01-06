@@ -15,7 +15,8 @@
 </tr>
 </thead>
 <tbody>
-    @foreach ($order->products as $product )
+
+    @foreach ($order->products()->with('category')->get() as $product )
     <tr>
         <td>
             <a href="{{ route('product', [$product->category->code, $product->code]) }}">
@@ -47,7 +48,7 @@
 @endforeach
         <tr>
 <td colspan="3">Общая стоимость:</td>
-<td>{{ $order->getFullPrice() }} ₽</td>
+<td>{{ $order->getFullSum() }} ₽</td>
 </tr>
 </tbody>
 </table>

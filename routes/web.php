@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('reset', 'App\Http\Controllers\ResetController@reset')->name('reset');
 Route::middleware(['auth'])->group(function(){
     Route::group([
         'prefix' => 'person',
@@ -34,7 +35,7 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('categories', 'CategoryController');
         Route::resource('products', 'ProductController');
     });
-    Route::group(['prefix' => 'admin'], function(){
+    Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function(){
             Route::get('/orders','App\Http\Controllers\OrdersController@index')->name('orders');
             Route::get('/orders/{order}','App\Http\Controllers\OrdersController@order')->name('order');
     

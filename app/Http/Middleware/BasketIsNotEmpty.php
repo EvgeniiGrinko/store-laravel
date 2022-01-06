@@ -15,19 +15,23 @@ class BasketIsNotEmpty
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
-    {
-        $orderId = session('orderId');
-        if (!is_null($orderId)) {
+    
+        public function handle($request, Closure $next)
+        {
+            $orderSum = session('full_order_sum');
 
-            $order = Order::findOrFail($orderId);
-            if($order->products->count() ==  0){
-                
+            if ($orderSum > 0 && Order::getFullSum() > 0) {
+                return $next($request);
+            }
+            if ($orderSum == 0 && Order::getFullSum() == 0) {
+                session()->forget('full_order_sum');
+                session()->forget('orderId');
                 session()->flash('warning', 'Ваша корзина пуста');
                 return redirect()->route('index');
-
             }
-        }   
-        return $next($request);
+            session()->forget('full_order_sum');
+            session()->flash('warning', 'Ваша корзина пуста');
+            return redirect()->route('index');
+        }
     }
-}
+

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.js"></script>
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/starter-template.css" rel="stylesheet">
 </head>
 <body>
@@ -25,8 +25,8 @@
                 <li @routeactive('categor*')><a href="{{route('categories')}}">Категории</a>
                 </li>
                 <li ><a href="{{route('basket')}}">В корзину</a></li>
-                {{-- <li><a href="https://internet-shop.tmweb.ru/reset">Сбросить проект в начальное состояние</a></li> --}}
-                <li><a href="https://internet-shop.tmweb.ru/locale/en">en</a></li>
+                <li><a href="{{ route('reset')}}">Сбросить проект в начальное состояние</a></li>
+                {{-- <li><a href="https://internet-shop.tmweb.ru/locale/en">en</a></li> --}}
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">₽<span class="caret"></span></a>
@@ -71,6 +71,7 @@
 </nav>
 <div class='container'>
 <div class="starter-template">
+
     @if (session()->has('success'))
         <p class="alert alert-success" >{{session()->get('success')}}</p>
     @endif

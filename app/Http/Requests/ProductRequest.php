@@ -25,19 +25,14 @@ class ProductRequest extends FormRequest
     {
         $rules = [
             'code' => 'required|min:3|max:255|unique:products,code',
-            'name'=> 'required|min:3|max:255',
-            'description'=> 'required|min:5',
-            'price' => 'required|numeric|min:1|',
+            'name' => 'required|min:3|max:255',
+            'description' => 'required|min:5',
         ];
-        dd($this->route());
-        return $rules;
-    }
 
-    public function messages() {
-        return [
-            'required' => 'Поле :attribute обязательно для ввода',
-            'min' => 'Поле :attribute должно содержать минимум :min символа',
-            'code.min' => 'Поле код должно быть не менее :min символов',
-        ];
+        if ($this->route()->named('products.update')) {
+            $rules['code'] .= ',' . $this->route()->parameter('product');
+        }
+
+        return $rules;
     }
 }

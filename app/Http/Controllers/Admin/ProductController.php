@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductsFilterRequest;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -17,7 +18,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::get();
+       
+        $products = Product::paginate(3);
         return view('auth.products.index', compact('products'));
     }
 
@@ -46,7 +48,9 @@ class ProductController extends Controller
     {
         $path = $request->file('image')->store('products');
         $params = $request->all();
+        
         $params['image'] = $path;
+       
         Product::create($params);
         return redirect()->route('products.index');
     }
@@ -95,6 +99,12 @@ class ProductController extends Controller
             $path = $request->file('image')->store('products');
             $params['image'] = $path;
         }
+        foreach(['new', 'hit', 'recommended'] as $fieldName){
+            if(!isset($params[$fieldName])){
+                $params[$fieldName] = 0;
+            } 
+        }
+       
         $product->update($params);
         return redirect()->route('products.index');
     }

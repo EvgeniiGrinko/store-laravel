@@ -19,7 +19,6 @@ div.form-inline form {
     display: inline;
 }
 
-
 div.labels {
     position: absolute;
 }
@@ -45,4 +44,11 @@ span.badge.badge-danger {
 
 div.filters {
     padding-bottom: 5px;
+}
+
+footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #99979c;
+    background-color: #2a2730;
 }

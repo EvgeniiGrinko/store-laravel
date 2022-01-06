@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
+        $categories = Category::paginate(1);
         return view('auth.categories.index', compact('categories'));
     }
 
