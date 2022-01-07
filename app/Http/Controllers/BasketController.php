@@ -35,7 +35,8 @@ class BasketController extends Controller
 
     public function basketAdd( Product $product){  
         $orderId = session('orderId');
-        if (is_null($orderId)) {
+        $orderSum = session('full_order_sum');
+        if (is_null($orderId) || is_null($orderSum)) {
             $order = Order::create();
             session(['orderId' => $order->id]);
         } else {
