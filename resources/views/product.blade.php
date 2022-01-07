@@ -17,17 +17,17 @@
     <p>Цена: <b>{{$product->price}} ₽</b></p>
     <img src="{{ Storage::url($product->image)}}" height="300px">
     <p>{{$product->description}}</p>
-    @if($product->isAvailable())
-    <p>Количество на складе: <b>{{$product->count}} шт.</b></p>
+    
+    <p>Количество на складе: <b>{{$product->count || '0'}} шт.</b></p>
     <form action="{{ route('basket-add', $product)}}" method="POST">
-        @csrf
+        @if($product->isAvailable())
         <button type="submit" 
        class="btn btn-success"
-       role="button">В корзину</button>
+       role="button">Добавить в корзину</button>
         @else 
         Товар распродан
         @endif
-        
+        @csrf
     </form>    
 
         </div>

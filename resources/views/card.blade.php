@@ -15,17 +15,13 @@
             <p>{{$product->price}} ₽</p>
             <p>
                 <form action="{{ route('basket-add', $product)}}" method="POST">
-                    @csrf
                     @if($product->isAvailable())
-                    <button type="submit" 
-                   class="btn btn-primary"
-                   role="button">В корзину</button>
+                    <button type="submit" class="btn btn-primary" role="button">В корзину</button>
                     @else 
                     Товар распродан
                     @endif
-                    <a href="{{ route('product', [$product->category, $product->code])}}"
-                   class="btn btn-default"
-                   role="button">Подробнее</a>
+                    <a href="{{ route('product', [$product->category, $product->code])}}" class="btn btn-default" role="button">Подробнее</a>
+                   @csrf
                 </form>
             </p>
         </div>
