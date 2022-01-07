@@ -5,21 +5,28 @@
             @if($product->isRecommended())<span class="badge badge-warning">Рекомендуемые</span>@endif
             @if($product->isHit())<span class="badge badge-danger">Хит продаж</span>@endif
         </div>
-        <img src="{{ Storage::url($product->image) }}" alt="Iphone X">
+        <a href="{{ route('product', [$product->category, $product->code])}}">
+            <img src="{{ Storage::url($product->image) }}" alt="Iphone X">
+        </a>
             <div class="caption">
-            <h3>{{$product->name}}</h3>
-            <p>{{$product->price ?? ''}} ₽</p>
+            <a href="{{ route('product', [$product->category, $product->code])}}">
+                <h3>{{$product->name}}</h3>
+            </a>
+            <p>{{$product->price}} ₽</p>
             <p>
                 <form action="{{ route('basket-add', $product)}}" method="POST">
+                    @csrf
+                    @if($product->isAvailable())
                     <button type="submit" 
                    class="btn btn-primary"
                    role="button">В корзину</button>
-                    <a href="{{ route('product', [isset($category) ? $category->code : $product->category, $product->code])}}"
+                    @else 
+                    Товар распродан
+                    @endif
+                    <a href="{{ route('product', [$product->category, $product->code])}}"
                    class="btn btn-default"
                    role="button">Подробнее</a>
-                   @csrf
                 </form>
-                
             </p>
         </div>
     </div>

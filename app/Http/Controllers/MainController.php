@@ -37,10 +37,10 @@ class MainController extends Controller{
         
         return view('category', compact('category'));
     }
-    public function product($category, $product){
-        // dd($product);
-        $product = Product::where('code', $product)->first();
-        // dd($product2);   
-        return view("product", ['product' => $product], compact('category'));
+    public function product( $category, $productCode){
+        // dd($productCode);
+        $product = Product::withTrashed()->byCode($productCode)->first();
+        // dd($category);   
+        return view("product", compact('product', "category"));
     }
 };

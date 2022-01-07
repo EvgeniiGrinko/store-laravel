@@ -16,17 +16,8 @@ class OrderController extends Controller
         
     }
     public function order(Order $order){
-        // dd($order->user_id);
-
-        // if(Auth::user()->id !== $order->user_id){
-        //     session()->flash('warning', 'У вас нет прав администратора');
-        //     $orders = Auth::user()->orders()->where('status', 1)->paginate(10);
-        //     return view('auth.orders.index', compact('orders'));
-            
-        // }
-        if (!Auth::user()->orders->contains($order)) {
-            return back();
-        }
-        return view('auth.orders.show', compact('order'));
+        $products = $order->products()->withTrashed()->get();
+        
+        return view('auth.orders.show', compact('order', 'products'));
     }
 }
