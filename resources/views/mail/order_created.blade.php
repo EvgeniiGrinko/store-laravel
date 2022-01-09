@@ -21,3 +21,8 @@
         @endforeach
     </tbody>
 </table>
+<br>
+<br>
+<p>С уважением,</p>
+<p>Ваш Internet-Store Mvideo</p>
+<p>http://cw88119.tmweb.ru/</p>

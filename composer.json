@@ -11,7 +11,8 @@
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "phpmailer/phpmailer": "^6.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
