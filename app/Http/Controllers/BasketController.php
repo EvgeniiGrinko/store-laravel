@@ -18,7 +18,7 @@ class BasketController extends Controller
     public function orderConfirm(Request $request){
 
         $email = Auth::check() ? Auth::user()->email : $request->email;
-       if((new Basket())->saveOrder($request->name, $request->phone, $request->email)){
+       if((new Basket())->saveOrder($request->name, $request->phone, $email)){
            session()->flash('success', 'Ваш заказ принят в обработку!');
        } else {
            session()->flash('warning', 'Товар не доступен для заказа в полном объеме');
