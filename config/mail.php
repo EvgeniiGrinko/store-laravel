@@ -37,10 +37,10 @@ return [
         'smtp' => [
             'transport' => 'smtp',
             'host' => env('MAIL_HOST', 'smtp.timeweb.ru'),
-            'port' => env('MAIL_PORT', 2525),
-            'encryption' => env('MAIL_ENCRYPTION', 'null'),
+            'port' => env('MAIL_PORT',  465),
+            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
             'username' => env('MAIL_USERNAME', 'info@cw88119.tmweb.ru'),
-            'password' => env('MAIL_PASSWORD'), 'Canada985560',
+            'password' => env('MAIL_PASSWORD','Canada985560'), 
             'timeout' => null,
             'auth_mode' => null,
         ],

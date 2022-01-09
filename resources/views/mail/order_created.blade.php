@@ -12,7 +12,7 @@
             </td>
             <td><span class="badge">{{ $product->pivot->count}}</span>
                 <div class="btn-group form-inline">
-                    {!! $product->description !!}
+                    {{ $product->description }}
                 </div>
             </td>
             <td>{{ $product->price}} ₽</td>
