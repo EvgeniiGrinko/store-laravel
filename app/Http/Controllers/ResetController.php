@@ -21,6 +21,8 @@ class ResetController extends Controller
             }
         }
         
+        session()->forget('orderId');
+        session()->forget('full_order_sum');
 
         session()->flash('success', "Проект был сброшен в начальное состояние");
         // dd('reset');

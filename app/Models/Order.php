@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    protected $fillable = ['user_id'];
     use HasFactory;
     public function products(){
         return $this->belongsToMany(Product::class)->withPivot('count')->withTimestamps();
@@ -26,7 +27,14 @@ class Order extends Model
 
     public static function changeFullSum($changeSum){
         $sum = self::getFullSum() + $changeSum;
-        session(['full_order_sum' => $sum]);       
+        session(['full_order_sum' => $sum]);    
+        if($sum == 0)  {
+           
+            $id = session('orderId');
+            $order = Order::find($id);
+            $order->delete();
+            self::eraseFullSum();
+        } 
     }
 
     public static function getFullSum(){

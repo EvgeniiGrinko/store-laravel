@@ -18,7 +18,7 @@
     <img src="{{ Storage::url($product->image)}}" height="300px">
     <p>{{$product->description}}</p>
     
-    <p>Количество на складе: <b>{{$product->count || '0'}} шт.</b></p>
+    <p>Количество на складе: <b>{{$product->count}} шт.</b></p>
     <form action="{{ route('basket-add', $product)}}" method="POST">
         @if($product->isAvailable())
         <button type="submit" 

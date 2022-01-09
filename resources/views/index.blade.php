@@ -33,6 +33,12 @@
                     </label>
                 </div>
                 <div class="col-sm-6 col-md-3">
+                    <label for="word">Содержит в названии:
+                        {{-- @lang('main.to') --}}
+                        <input type="text" name="word" id="word" size="15"  value="{{ request()->word }}">
+                    </label>
+                </div>
+                <div class="col-sm-6 col-md-3">
                     <button type="submit" class="btn btn-primary">Фильтр
                         {{-- @lang('main.filter') --}}
                     </button>
