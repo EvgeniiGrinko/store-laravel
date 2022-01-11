@@ -16,7 +16,7 @@
             <p>
                 <form action="{{ route('basket-add', $product)}}" method="POST">
                     @if($product->isAvailable())
-                    <button type="submit" class="btn btn-primary" role="button">В корзину</button>
+                    <button type="submit" class="btn btn-primary">В корзину</button>
                     @else 
                     Товар распродан
                     @endif
