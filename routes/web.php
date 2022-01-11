@@ -21,6 +21,9 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/googled7719b5571da4c6e.html', 'App\Http\Controllers\MainController@google')->name('google');
+
 Route::get('reset', 'App\Http\Controllers\ResetController@reset')->name('reset');
 Route::middleware(['auth'])->group(function(){
     Route::group([
@@ -98,7 +101,7 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
 Route::get('/','App\Http\Controllers\MainController@index')->name('index');
 Route::get('/categories', 'App\Http\Controllers\MainController@categories')->name('categories');
 
-
+Route::post('subscription/{product}', 'App\Http\Controllers\MainController@subscribe')->name('subscription');
 Route::group(['prefix' => 'basket'], function(){
     Route::post('/add/{product}', 'App\Http\Controllers\BasketController@basketAdd')->name('basket-add');
     Route::group(['middleware' => 'basket_not_empty'], function(){
@@ -108,7 +111,6 @@ Route::group(['prefix' => 'basket'], function(){
         Route::post('/order', 'App\Http\Controllers\BasketController@orderConfirm')->name('basket-confirm');    
     });
 });
-
 
 Route::get('/store/{category}', 'App\Http\Controllers\MainController@category')->name('category');
 Route::get('/store/{category}/{product?}', 'App\Http\Controllers\MainController@product')->name('product');

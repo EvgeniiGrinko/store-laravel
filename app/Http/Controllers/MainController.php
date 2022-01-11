@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Subscription;
 
 
 
@@ -46,5 +47,18 @@ class MainController extends Controller{
         $product = Product::withTrashed()->byCode($productCode)->firstOrFail();
         // dd($category);   
         return view("product", compact('product', "category"));
+    }
+    public function subscribe(Request $request, Product $product){
+        // dd($product);
+        Subscription::create(
+            [
+                'email' => $request->email,
+                'product_id' => $product->id,
+            ]
+            );
+        return redirect()->back()->with('success', 'Вы были успешно подписаны на продукт. Мы сообщим вам о поступлении о товара.');
+    }
+    public function google(){
+        return view('google');
     }
 };

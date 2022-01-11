@@ -19,16 +19,25 @@
     <p>{{$product->description}}</p>
     
     <p>Количество на складе: <b>{{$product->count}} шт.</b></p>
-    <form action="{{ route('basket-add', $product)}}" method="POST">
         @if($product->isAvailable())
+        <form action="{{ route('basket-add', $product)}}" method="POST">
+
         <button type="submit" 
        class="btn btn-success"
        role="button">Добавить в корзину</button>
-        @else 
-        Товар распродан
-        @endif
-        @csrf
+       @csrf
     </form>    
+
+        @else 
+        <span>Товар распродан</span> 
+        <br>
+        <span>Сообщить мне когда товар станет доступен</span>
+        <form action="{{ route('subscription', $product) }}" method="POST">
+            @csrf
+            <input type="text" name="email">
+            <button type="submit">Подписаться на товар</button>
+        </form>
+        @endif
 
         </div>
       
