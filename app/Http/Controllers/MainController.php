@@ -5,6 +5,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Subscription;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -59,6 +60,6 @@ class MainController extends Controller{
         return redirect()->back()->with('success', 'Вы были успешно подписаны на продукт. Мы сообщим вам о поступлении о товара.');
     }
     public function google(){
-        return view('google');
+        return redirect(dd(Storage::url('google/googled7719b5571da4c6e.html')));
     }
 };

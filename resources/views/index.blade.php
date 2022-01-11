@@ -3,7 +3,6 @@
 @section('content')
     <div class="starter-template">
         <h1>Все товары</h1>
-        <a href="{{route('google')}}">Google</a>
         <form method="GET" action="{{route("index")}}">
             <div class="filters row">
                 <div class="col-sm-6 col-md-3">
