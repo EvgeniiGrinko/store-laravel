@@ -53,7 +53,6 @@
         @include('card', compact('product'))
         @endforeach
     </div>
-
-    </div>
     {{ $products->links()}}
+</div>
 @endsection
