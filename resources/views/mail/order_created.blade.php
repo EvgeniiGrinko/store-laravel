@@ -25,4 +25,4 @@
 <br>
 <p>С уважением,</p>
 <p>Ваш Internet-Store Mvideo</p>
-<p>http://cw88119.tmweb.ru/</p>
+<p>http://bestgadget.tech/</p>

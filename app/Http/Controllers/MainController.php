@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\SubscriptionRequest;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\Storage;
 
@@ -49,17 +50,16 @@ class MainController extends Controller{
         // dd($category);   
         return view("product", compact('product', "category"));
     }
-    public function subscribe(Request $request, Product $product){
-        // dd($product);
+    public function subscribe(SubscriptionRequest $request, Product $product){
         Subscription::create(
             [
                 'email' => $request->email,
                 'product_id' => $product->id,
             ]
             );
-        return redirect()->back()->with('success', 'Вы были успешно подписаны на продукт. Мы сообщим вам о поступлении о товара.');
+        return redirect()->back()->with('success', 'Вы были успешно подписаны на продукт. Мы сообщим вам о поступлении о его поступлении.');
     }
     public function google(){
-        return redirect(dd(Storage::url('google/googled7719b5571da4c6e.html')));
+        return redirect(Storage::url('google/googled7719b5571da4c6e.html'));
     }
 };

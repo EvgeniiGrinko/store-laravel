@@ -20,7 +20,6 @@
                     <a class="navbar-brand" href="{{ route('index') }}">Вернуться на сайт</a>
                     <div id="navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li>
                                 @admin 
                                 <li class="active"><a href="{{route('index')}}">Все товары</a></li>
                                 <li ><a href="{{route('categories.index')}}">Категории</a></li>
@@ -28,7 +27,6 @@
                                 <li ><a href="{{route('orders')}}">Заказы</a></li>
                                 @else <li ><a href="{{ route('person.orders.index')}}">Мои Заказы</a></li>
                                 @endadmin
-                            </li>
                         </ul>
                         @guest
                             <ul class="nav navbar-nav navbar-right">
