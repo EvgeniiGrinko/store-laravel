@@ -78,6 +78,16 @@
                                   rows="7">@isset($product){{ $product->description }}@endisset</textarea>
                     </div>
                 </div>
+                <br>
+                <div class="input-group row">
+                    <label for="description" class="col-sm-2 col-form-label">Описание en: </label>
+                    <div class="col-sm-6">
+                        @include('auth.layouts.error', ['fieldName' => 'description_en'])
+                        <textarea name="description_en" id="description_en" cols="72"
+                                  rows="7">@isset($product){{ $product->description_en }}@endisset</textarea>
+                    </div>
+                </div>
+                <br>
                 <div class="input-group row">
                     <label for="price" class="col-sm-2 col-form-label">Цена: </label>
                     <div class="col-sm-6">
@@ -94,15 +104,6 @@
                                value="@isset($product){{ $product->count }}@endisset">
                     </div>
                 </div>
-                {{-- <br>
-                    <div class="input-group row">
-                        <label for="description_en" class="col-sm-2 col-form-label">Описание en: </label>
-                        <div class="col-sm-6">
-                            {{-- @include('auth.layouts.error', ['fieldName' => 'description_en']) --}}
-                            {{-- <textarea name="description_en" id="description_en" cols="72"
-                                      rows="7">@isset($product){{ $product->description_en }}@endisset</textarea>
-                        </div>
-                    </div> --}}
                     <br>
                 <div class="input-group row">
                     <label for="image" class="col-sm-2 col-form-label">Картинка: </label>

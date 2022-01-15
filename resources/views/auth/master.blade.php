@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Админка: @yield('title')</title>
         <script src="/js/app.js" defer></script>
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
         <link href="/css/app.css" rel="stylesheet">
         <link href="/css/bootstrap.min.css" rel="stylesheet">

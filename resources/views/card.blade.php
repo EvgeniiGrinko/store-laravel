@@ -6,20 +6,20 @@
             @if($product->isHit())<span class="badge badge-danger">Хит продаж</span>@endif
         </div>
         <a href="{{ route('product', [$product->category, $product->code])}}">
-            <img src="{{ Storage::url($product->image) }}" alt="{{$product->name}} image">
+            <img src="{{ Storage::url($product->image) }}" alt="{{$product->__('name')}} image">
         </a>
         <div class="caption">
             <a href="{{ route('product', [$product->category, $product->code])}}">
-                <h3>{{$product->name}}</h3>
+                <h3>{{$product->__('name')}}</h3>
             </a>
             <p>{{$product->price}} ₽</p>
             <form action="{{ route('basket-add', $product)}}" method="POST">
                 @if($product->isAvailable())
-                <button type="submit" class="btn btn-primary">В корзину</button>
+                <button type="submit" class="btn btn-primary">@lang('product.add_to_cart')</button>
                 @else 
-                Товар распродан
+                @lang('product.product_soldout')
                 @endif
-                <a href="{{ route('product', [$product->category, $product->code])}}" class="btn btn-default" role="button">Подробнее</a>
+                <a href="{{ route('product', [$product->category, $product->code])}}" class="btn btn-default" role="button">@lang('product.more_info')</a>
                 @csrf
             </form>
         </div>

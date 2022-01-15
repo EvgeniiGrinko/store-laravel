@@ -15,7 +15,7 @@ class OrdersController extends Controller
         return view('auth.orders.index', compact('orders'));
     }
     public function order (Order $order){
-        
-        return view('auth.orders.show', compact('order'));
+        $products = $order->products()->withTrashed()->get();    
+        return view('auth.orders.show', compact('order', 'products'));
     }
 }

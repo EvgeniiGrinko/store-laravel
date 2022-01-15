@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -23,8 +24,16 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 */
 
 Route::get('/googled7719b5571da4c6e.html', 'App\Http\Controllers\MainController@google')->name('google');
-
+Auth::routes([
+    'reset' => false,
+    'confirm' => false,
+    'verify' => false,
+]);
+Route::get('/locale/{locale}', 'App\Http\Controllers\MainController@changeLocale')->name('locale');
 Route::get('reset', 'App\Http\Controllers\ResetController@reset')->name('reset');
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout');
+Route::middleware(['set_locale'])->group(function(){
+
 Route::middleware(['auth'])->group(function(){
     Route::group([
         'prefix' => 'person',
@@ -95,9 +104,7 @@ Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show'])
 Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store'])
                 ->middleware('auth');
 
-Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->middleware('auth')
-                ->name('logout');
+
 Route::get('/','App\Http\Controllers\MainController@index')->name('index');
 Route::get('/categories', 'App\Http\Controllers\MainController@categories')->name('categories');
 
@@ -120,5 +127,7 @@ Route::get('/store/{category}/{product?}', 'App\Http\Controllers\MainController@
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+});
 
 require __DIR__.'/auth.php';

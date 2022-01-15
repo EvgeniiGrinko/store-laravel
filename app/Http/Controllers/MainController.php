@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SubscriptionRequest;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\App;
 
 
 
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller{
     public function index(Request $request){
+
         $productsQuery = Product::with('category');
         if ($request->filled('price_from')){
             $productsQuery->where('price', '>=', $request->price_from);
@@ -61,5 +63,16 @@ class MainController extends Controller{
     }
     public function google(){
         return redirect(Storage::url('google/googled7719b5571da4c6e.html'));
+    }
+
+    public function changeLocale($locale){
+        $availableLocales = ['ru', 'en',];
+        if(!in_array($locale, $availableLocales)) {
+            $locale = config('app.locale'); 
+        }
+        session(['locale' => $locale]);
+        App::setLocale($locale);
+        return redirect()->back();
+       
     }
 };

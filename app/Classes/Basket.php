@@ -83,12 +83,20 @@ class Basket {
         if ($this->order->products->contains($product->id)){
             $pivotRow = $this->getPivot($product);
             $pivotRow->count++;
+            if ($pivotRow->count >$product->count){
+                return false;
+            }
+
             $pivotRow->update(); 
         } else {
+            if($product->count == 0) {
+                return false;
+            }
             $this->order->products()->attach($product->id);
         }
       
         Order::changeFullSum($product->price);
+        return true;
     }
 }
 

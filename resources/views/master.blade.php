@@ -5,10 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="yandex-verification" content="9974e0eee0f21447"/>
-        <title>Интернет Магазин: @yield('title') </title>
+        <title>@lang('main.online_shop'): @yield('title') </title>
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <script src="/js/jquery.min.js"></script>
-        <script src="/js/bootstrap.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/starter-template.css" rel="stylesheet">
     </head>
@@ -16,14 +16,15 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{route('index')}}">Интернет Магазин</a>
+                <a class="navbar-brand" href="{{route('index')}}">{{__('main.online_shop')}}</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li @routeactive('index')><a href="{{route('index')}}">Все товары</a></li>
-                    <li @routeactive('categor*')><a href="{{route('categories')}}">Категории</a></li>
-                    <li ><a href="{{route('basket')}}">В корзину</a></li>
-                    <li><a href="{{ route('reset')}}">Сбросить проект в начальное состояние</a></li>
+                    <li @routeactive('index')><a href="{{route('index')}}">@lang('main.all_products')</a></li>
+                    <li @routeactive('categor*')><a href="{{route('categories')}}">@lang('main.categories')</a></li>
+                    <li ><a href="{{route('basket')}}">@lang('main.to_basket')</a></li>
+                    <li><a href="{{ route('reset')}}">@lang('main.reset_project')</a></li>
+                    <li><a href="{{route('locale', __('main.set_lang'))}}">{{ __('main.set_lang') }}</a></li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">₽<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="https://internet-shop.tmweb.ru/currency/RUB">₽</a></li>
@@ -34,15 +35,15 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @guest
-                    <li><a href="{{route('login')}}">Войти</a></li>                 
+                    <li><a href="{{route('login')}}">@lang('main.login')</a></li>                 
                     @endguest
                     @auth
                     @admin
-                    <li class='nav-item'><a href="{{route('orders')}}">Панель администратора</a></li>
+                    <li class='nav-item'><a href="{{route('orders')}}">@lang('main.admin_panel')</a></li>
                     @else
-                    <li class='nav-item'><a href="{{route('person.orders.index')}}">Мои заказы</a></li>
+                    <li class='nav-item'><a href="{{route('person.orders.index')}}">@lang('main.my_orders')</a></li>
                     @endadmin
-                    <li class='nav-item'><a href="{{route('logout')}}">Выйти</a></li>
+                    <li class='nav-item'><a href="{{route('logout')}}">@lang('main.logout')</a></li>
                     @endauth
                 </ul>
             </div>
