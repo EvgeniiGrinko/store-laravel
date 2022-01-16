@@ -11,6 +11,7 @@
         <script src="/js/bootstrap.min.js"></script>
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/starter-template.css" rel="stylesheet">
+        
     </head>
     <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -25,13 +26,13 @@
                     <li ><a href="{{route('basket')}}">@lang('main.to_basket')</a></li>
                     <li><a href="{{ route('reset')}}">@lang('main.reset_project')</a></li>
                     <li><a href="{{route('locale', __('main.set_lang'))}}">{{ __('main.set_lang') }}</a></li>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">₽<span class="caret"></span></a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{App\Services\CurrencyConversion::getCurrencySymbol()}}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="https://internet-shop.tmweb.ru/currency/RUB">₽</a></li>
-                            <li><a href="https://internet-shop.tmweb.ru/currency/USD">$</a></li>
-                            <li><a href="https://internet-shop.tmweb.ru/currency/EUR">€</a></li>
+                            @foreach (App\Services\CurrencyConversion::getCurrencies() as $currency)
+                                <li><a href="{{route('currency', $currency->code)}}">{{ $currency->symbol }}</a></li>
+                            @endforeach
                         </ul>
-                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @guest

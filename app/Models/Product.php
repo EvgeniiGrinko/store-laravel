@@ -6,6 +6,7 @@ use App\Models\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Services\CurrencyConversion;
 
 class Product extends Model
 {
@@ -37,6 +38,10 @@ class Product extends Model
         }
         return $this->price;
     }
+    public function getPriceAttribute(){
+        return round(CurrencyConversion::convert( $this->attributes["price"]),2);
+    }
+    
 
     public function scopeHit($query){
         return $query->where('hit', 1);

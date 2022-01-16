@@ -12,7 +12,7 @@
             <a href="{{ route('product', [$product->category, $product->code])}}">
                 <h3>{{$product->__('name')}}</h3>
             </a>
-            <p>{{$product->price}} ₽</p>
+            <p>{{$product->price}} {{ App\Services\CurrencyConversion::getCurrencySymbol() }}</p>
             <form action="{{ route('basket-add', $product)}}" method="POST">
                 @if($product->isAvailable())
                 <button type="submit" class="btn btn-primary">@lang('product.add_to_cart')</button>

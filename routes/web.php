@@ -30,6 +30,7 @@ Auth::routes([
     'verify' => false,
 ]);
 Route::get('/locale/{locale}', 'App\Http\Controllers\MainController@changeLocale')->name('locale');
+Route::get('/currency/{currency}', 'App\Http\Controllers\MainController@changeCurrency')->name('currency');
 Route::get('reset', 'App\Http\Controllers\ResetController@reset')->name('reset');
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout');
 Route::middleware(['set_locale'])->group(function(){
