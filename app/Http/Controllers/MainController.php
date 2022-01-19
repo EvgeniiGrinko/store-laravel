@@ -10,6 +10,7 @@ use App\Models\Subscription;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\App;
 use App\Models\Order;
+use App\Services\CurrencyRates;
 
 
 
@@ -18,7 +19,6 @@ use App\Models\Order;
 
 class MainController extends Controller{
     public function index(Request $request){
-
         $productsQuery = Product::with('category');
         if ($request->filled('price_from')){
             $productsQuery->where('price', '>=', $request->price_from);
