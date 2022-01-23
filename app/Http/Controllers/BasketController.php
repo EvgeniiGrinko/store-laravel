@@ -23,7 +23,6 @@ class BasketController extends Controller
        } else {
            session()->flash('warning', 'Товар не доступен для заказа в полном объеме');
        }
-       Order::eraseFullSum();
         return redirect()->route('index');
     }
 
@@ -40,7 +39,7 @@ class BasketController extends Controller
     public function basketAdd( Product $product){  
         $result = (new Basket(true))->addProduct($product);
         if ($result) {
-            session()->flash('success', 'Добавлен товар'.$product->name);
+            session()->flash('success', 'Добавлен товар '.$product->name);
 
         }   
         else {

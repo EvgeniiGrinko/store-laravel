@@ -1,5 +1,5 @@
 <?php 
 return [
-    'your_order_sum' => 'Ваш заказ на сумму',
-    'created' => 'создан'
+    'order_created' => 'Ваш заказ создан',
+    'your_order_sum' => 'Cумма заказа',
 ];

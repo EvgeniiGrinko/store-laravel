@@ -1,5 +1,5 @@
-<p>Уважаемый {{ $name }}</p> 
-<p>@lang('mail.order_created.your_order_sum') {{ $fullSum }} @lang('mail.order_created.created')</p> 
+<p>Уважаемый {{ $name }}, {{ __('mail.order_created.order_created') }}!</p> 
+<p>@lang('mail.order_created.your_order_sum') {{ $fullSum }}</p> 
 <table>
     <tbody>
         @foreach($order->products as $product)
@@ -10,7 +10,7 @@
                     {{$product->__('name')}}
                 </a>
             </td>
-            <td><span class="badge">{{ $product->pivot->count}}</span>
+            <td><span class="badge">{{ $product->countInOrder}}</span>
                 <div class="btn-group form-inline">
                     {{ $product->__('description') }}
                 </div>
@@ -24,5 +24,5 @@
 <br>
 <br>
 <p>С уважением,</p>
-<p>Ваш Internet-Store Mvideo</p>
+<p>Ваш Internet Store</p>
 <p>http://bestgadget.tech/</p>

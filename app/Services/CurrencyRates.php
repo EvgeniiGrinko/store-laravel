@@ -13,7 +13,7 @@ class CurrencyRates
         if($response->getStatusCode() != 200){
             throw new \Exception('There is a problem with currency rate service');
         }
-        $rates = json_decode($response->getBody()->getContents(), true)['conversion_rates']; 
+        $rates = json_decode($response->getBody()->getContents(), true)['data']; 
         foreach(CurrencyConversion::getCurrencies() as $currency) {
             if(!$currency->isMain()){
                 if(!isset($rates[$currency->code])){
