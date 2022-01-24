@@ -34,27 +34,12 @@ class CurrencyConversion{
     public static function convert($sum, $originCurrencyCode = self::DEFAULT_CURRENCY_CODE, $targetCurrencyCode = null)
     {
         self::loadContainer();
-
         $originCurrency = self::$container[$originCurrencyCode];
-
-        if ($originCurrency->code != self::DEFAULT_CURRENCY_CODE) {
-            if ($originCurrency->rate != 0 || $originCurrency->updated_at->startOfDay() != Carbon::now()->startOfDay()) {
-                CurrencyRates::getRates();
-                self::loadContainer();
-                $originCurrency = self::$container[$originCurrencyCode];
-            }
-        }
-
-        if (is_null($targetCurrencyCode)) {
-            $targetCurrencyCode = self::getCurrencyFromSession();
-        }
-
+        $targetCurrencyCode = self::getCurrencyFromSession();
         $targetCurrency = self::$container[$targetCurrencyCode];
-        if ($originCurrency->code != self::DEFAULT_CURRENCY_CODE) {
-            if ($targetCurrency->rate == 0 || $targetCurrency->updated_at->startOfDay() != Carbon::now()->startOfDay()) {
+        if ($originCurrency->code != $targetCurrency->code) {
+            if (($targetCurrency->rate == 0 ) || ($targetCurrency->updated_at->startOfDay() != Carbon::now()->startOfDay())) {
                 CurrencyRates::getRates();
-                self::loadContainer();
-                $targetCurrency = self::$container[$targetCurrencyCode];
             }
         }
 
@@ -68,8 +53,9 @@ class CurrencyConversion{
     public static function getCurrencySymbol(){
         self::loadContainer();
         $currencyFromSession = self::getCurrencyFromSession(); 
-        $currencySumbol = self::$container[$currencyFromSession]->symbol;
-        return $currencySumbol;
+        // dd(self::$container[$currencyFromSession]->symbol);
+        $currencySymbol = self::$container[$currencyFromSession]->symbol;
+        return $currencySymbol;
     }
     public static function getBaseCurrency(){
         self::loadContainer();

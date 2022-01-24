@@ -13,6 +13,6 @@ class Currency extends Model
         return $query->where('code', $code);
     }
     public function isMain(){
-        return $this->is_main === 1;
+        return $this->is_main == 1;
     }
 }

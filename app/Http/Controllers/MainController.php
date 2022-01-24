@@ -79,7 +79,9 @@ class MainController extends Controller{
        
     }
     public function changeCurrency($currencyCode){
+        
          $currency = Currency::byCode($currencyCode)->firstOrfail();
+        
          session(['currencyCode' => $currency->code]);
          return redirect()->back();
     }

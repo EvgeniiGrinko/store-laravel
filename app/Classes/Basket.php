@@ -76,7 +76,7 @@ class Basket {
           
             if($pivotRow->countInOrder < 2) {
                 
-                    $this->order->products->pull($product->id);
+                    $this->order->products->pull($product->code);
                     $pivotRow->countInOrder = 0;
                
             

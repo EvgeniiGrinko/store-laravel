@@ -1,5 +1,5 @@
-<p>Уважаемый {{ $name }}, {{ __('mail.order_created.order_created') }}!</p> 
-<p>@lang('mail.order_created.your_order_sum') {{ $fullSum }}</p> 
+<p>Уважаемый {{ $name }}, @lang('order_created.order_created')!</p> 
+<p>@lang('order_created.your_order_sum') {{ $fullSum }}</p> 
 <table>
     <tbody>
         @foreach($order->products as $product)

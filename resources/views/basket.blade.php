@@ -17,7 +17,7 @@
 <tbody>
 
     @foreach ($order->products as $product )
-    @if(($product->price * $product->countInOrder) > 0)
+    @if($product->countInOrder > 0)
     <tr>
         <td>
             <a href="{{ route('product', [$product->category->code, $product->code]) }}">
