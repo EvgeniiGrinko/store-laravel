@@ -69,23 +69,20 @@ class Basket {
     }
 
 
-    public function removeProduct(Product $product){
+    public function removeProduct(Product $product){       
         if ($this->order->products->contains($product)){
             $pivotRow = $this->order->products->where('id', $product->id)->first();
-            
-          
             if($pivotRow->countInOrder < 2) {
-                
-                    $this->order->products->pull($product->code);
-                    $pivotRow->countInOrder = 0;
-               
-            
+                $collection = $this->order->products;
+                foreach ($collection as $key => $item) {
+                if ($item->name == $product->name) {
+                 $collection->pull($key);
+                    }   
+                }
             } else {
                 $pivotRow->countInOrder--;  
             }
         }
-        
-        
     }
 
     public function addProduct(Product $product){
