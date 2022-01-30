@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Classes;
 use App\Models\Order;
@@ -30,17 +30,17 @@ class Basket {
             }
             $data['currency_id'] = CurrencyConversion::getCurrentCurrencyFromSession()->id;
             $this->order = new Order($data);
-            session(['order' => $this->order]); 
+            session(['order' => $this->order]);
         } else {
             $this->order = $order;
         }
 
     }
-   
+
     public function getOrder(){
         return $this->order;
     }
-    
+
     public function countAvailable($updateCount = false){
         $products = collect([]);
         foreach($this->order->products as $orderProduct){
@@ -58,8 +58,8 @@ class Basket {
         return true;
     }
 
-    public function saveOrder($name, $phone, $email){
-       
+    public function saveOrder($name, $phone, $email) {
+
         if (!$this->countAvailable(true)){
             return false;
         }
@@ -69,7 +69,7 @@ class Basket {
     }
 
 
-    public function removeProduct(Product $product){       
+    public function removeProduct(Product $product){
         if ($this->order->products->contains($product)){
             $pivotRow = $this->order->products->where('id', $product->id)->first();
             if($pivotRow->countInOrder < 2) {
@@ -77,10 +77,10 @@ class Basket {
                 foreach ($collection as $key => $item) {
                 if ($item->name == $product->name) {
                  $collection->pull($key);
-                    }   
+                    }
                 }
             } else {
-                $pivotRow->countInOrder--;  
+                $pivotRow->countInOrder--;
             }
         }
     }
@@ -91,7 +91,7 @@ class Basket {
             if ($pivotRow->countInOrder >= $product->count){
                 return false;
             }
-            $pivotRow->countInOrder++; 
+            $pivotRow->countInOrder++;
         } else {
             if($product->count == 0) {
                 return false;

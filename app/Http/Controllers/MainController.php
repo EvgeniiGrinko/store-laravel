@@ -34,6 +34,7 @@ class MainController extends Controller{
                 $productsQuery->$field();
             }
         }
+        $categories = Category::get();
 
         $products = $productsQuery->paginate(6)->withQueryString();
         return view("index", compact('products'));
@@ -41,7 +42,7 @@ class MainController extends Controller{
     public function categories(){
         $categories = Category::get();
         $products = Product::get();
-        return view("categories", compact('categories', 'products') );
+        return view("categories", compact('products') );
     }
     public function category($code){
 
