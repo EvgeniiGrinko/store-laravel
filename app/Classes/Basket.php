@@ -42,19 +42,21 @@ class Basket {
     }
 
     public function countAvailable($updateCount = false){
-        $products = collect([]);
+//        $products = ;
         foreach($this->order->products as $orderProduct){
-            $products->push(Product::find($orderProduct->id));
+//            $productCount = $products->where('code', $orderProduct->code)->first()->count;
+
             if($orderProduct->countInOrder > $orderProduct->count){
+
                 return false;
             }
             if ($updateCount) {
+
                 $orderProduct->count -= $orderProduct->countInOrder;
-            }
-        if($updateCount){
-            $products->map->save();
-        }
-        }
+                Product::where('code', $orderProduct->code)->first()->update(['count' => $orderProduct->count]);
+            }}
+
+
         return true;
     }
 

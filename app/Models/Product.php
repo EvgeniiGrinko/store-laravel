@@ -14,13 +14,14 @@ class Product extends Model
     use SoftDeletes;
     use Translatable;
     protected $fillable = ['code', 'name', 'category_id','description', 'image', 'price', 'hit', 'new', 'recommended', 'count', 'name_en', 'description_en'];
-    
+
 
     public function getCategory() {
         return Category::find($this->category_id);
-       
-        
+
+
     }
+
     public function isAvailable(){
         return !$this->trashed() && $this->count > 0;
     }
@@ -41,28 +42,28 @@ class Product extends Model
     public function getPriceAttribute(){
         return round(CurrencyConversion::convert( $this->attributes["price"]),2);
     }
-    
+
 
     public function scopeHit($query){
         return $query->where('hit', 1);
-    }  
-    
+    }
+
     public function scopeNew($query){
         return $query->where('new', 1);
-    }  
-    
+    }
+
     public function scopeRecommended($query){
         return $query->where('recommended', 1);
     }
 
     public function setNewAttribute($value){
         $this->attributes['new'] = $value === 'on' ? 1 : 0;
-    } 
+    }
 
     public function setHitAttribute($value){
         $this->attributes['hit'] = $value === 'on' ? 1 : 0;
-    } 
-    
+    }
+
     public function setRecommendedAttribute($value){
         $this->attributes['recommended'] = $value === 'on' ? 1 : 0;
     }
