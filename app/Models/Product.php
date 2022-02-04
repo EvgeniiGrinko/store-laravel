@@ -21,9 +21,16 @@ class Product extends Model
 
 
     }
+    public function skus(){
+        return $this->hasMany(Sku::class);
+    }
 
     public function isAvailable(){
         return !$this->trashed() && $this->count > 0;
+    }
+
+    public function properties(){
+        return $this->belongsToMany(Property::class);
     }
 
     public function scopeByCode($query, $code) {

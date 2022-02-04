@@ -47,13 +47,15 @@ Route::middleware(['auth'])->group(function(){
     Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'], function(){
         Route::resource('categories', 'CategoryController');
         Route::resource('products', 'ProductController');
+        Route::resource('properties', 'PropertyController');
+        Route::resource('properties/{property}/property-options', 'PropertyOptionController');
     });
     Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function(){
             Route::get('/orders','App\Http\Controllers\OrdersController@index')->name('orders');
             Route::get('/orders/{order}','App\Http\Controllers\OrdersController@order')->name('order');
-    
+
         });
-    
+
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
@@ -116,7 +118,7 @@ Route::group(['prefix' => 'basket'], function(){
         Route::get('/', 'App\Http\Controllers\BasketController@basket')->name('basket');
         Route::get('/order', 'App\Http\Controllers\BasketController@order')->name('basket-place');
         Route::post('/remove/{product}', 'App\Http\Controllers\BasketController@basketRemove')->name('basket-remove');
-        Route::post('/order', 'App\Http\Controllers\BasketController@orderConfirm')->name('basket-confirm');    
+        Route::post('/order', 'App\Http\Controllers\BasketController@orderConfirm')->name('basket-confirm');
     });
 });
 

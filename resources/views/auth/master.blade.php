@@ -19,10 +19,11 @@
                     <a class="navbar-brand" href="{{ route('index') }}">Вернуться на сайт</a>
                     <div id="navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                                @admin 
+                                @admin
                                 <li class="active"><a href="{{route('index')}}">Все товары</a></li>
                                 <li ><a href="{{route('categories.index')}}">Категории</a></li>
                                 <li ><a href="{{route('products.index')}}">Товары</a></li>
+                                <li ><a href="{{route('properties.index')}}">Свойства</a></li>
                                 <li ><a href="{{route('orders')}}">Заказы</a></li>
                                 @else <li ><a href="{{ route('person.orders.index')}}">Мои Заказы</a></li>
                                 @endadmin
@@ -44,9 +45,9 @@
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ route('orders')}}" role="button"
                                     data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false" v-pre>
-                                        Администратор 
+                                        Администратор
                                     </a>
-                                    @else 
+                                    @else
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ route('person.orders.index')}}" role="button"
                                     data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false" v-pre>
