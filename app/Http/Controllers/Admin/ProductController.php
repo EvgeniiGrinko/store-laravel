@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductsFilterRequest;
+use App\Models\Property;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -18,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-       
+
         $products = Product::paginate(3);
         return view('auth.products.index', compact('products'));
     }
@@ -30,12 +31,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-        
+
         $categories = Category::get();
-     
-        return view('auth.products.form', compact('categories'));
-    
-        
+        $properties = Property::get();
+
+        return view('auth.products.form', compact('categories', 'properties'));
+
+
     }
 
     /**
@@ -48,9 +50,9 @@ class ProductController extends Controller
     {
         $path = $request->file('image')->store('products');
         $params = $request->all();
-        
+
         $params['image'] = $path;
-       
+
         Product::create($params);
         return redirect()->route('products.index');
     }
@@ -79,7 +81,8 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $categories = Category::get();
-        return view('auth.products.form', compact('product', 'categories'));
+        $properties = Property::get();
+        return view('auth.products.form', compact('product', 'categories', 'properties'));
     }
 
     /**
@@ -93,7 +96,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $params = $request->all();
-        unset($params['image']);  
+        unset($params['image']);
         if($request->has('image')){
             Storage::delete($product->image);
             $path = $request->file('image')->store('products');
@@ -102,10 +105,12 @@ class ProductController extends Controller
         foreach(['new', 'hit', 'recommended'] as $fieldName){
             if(!isset($params[$fieldName])){
                 $params[$fieldName] = 0;
-            } 
+            }
         }
-       
+
         $product->update($params);
+        $product->properties()->sync($request->property_id);
+//        dd();
         return redirect()->route('products.index');
     }
 

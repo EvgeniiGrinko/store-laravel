@@ -40,12 +40,12 @@
                     </a>
                 </div>
             </div>
-        </form> 
+        </form>
     <div class="row">
-        @foreach ($products as $product)
-        @include('card', compact('product'))
+        @foreach ($skus as $sku)
+        @include('card', compact('sku'))
         @endforeach
     </div>
-    {{ $products->links()}}
+    {{ $skus->links()}}
 </div>
 @endsection

@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     'online_shop' => 'Online shop',
     'all_products' => 'All products',
@@ -10,7 +10,7 @@ return [
     'reset' => 'Reset',
     'categories' => 'Categories',
     'to_basket' => 'Go to basket',
-    'reset_project' => 'Reset project',
+    'project_reset' => 'Reset of project is completed',
     'login' => 'Login',
     'admin_panel' => "Admin's",
     'my_orders' => 'My orders',
@@ -19,5 +19,5 @@ return [
         'hit' => 'Hit',
         'recommend' => 'Recommend',
         'new' => 'New',
-    ],  
+    ],
 ];

@@ -31,9 +31,9 @@ Auth::routes([
 ]);
 Route::get('/locale/{locale}', 'App\Http\Controllers\MainController@changeLocale')->name('locale');
 Route::get('/currency/{currency}', 'App\Http\Controllers\MainController@changeCurrency')->name('currency');
-Route::get('reset', 'App\Http\Controllers\ResetController@reset')->name('reset');
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout');
 Route::middleware(['set_locale'])->group(function(){
+    Route::get('reset', 'App\Http\Controllers\ResetController@reset')->name('reset');
 
 Route::middleware(['auth'])->group(function(){
     Route::group([
@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function(){
     Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'], function(){
         Route::resource('categories', 'CategoryController');
         Route::resource('products', 'ProductController');
+        Route::resource('products/{product}/skus', 'SkuController');
         Route::resource('properties', 'PropertyController');
         Route::resource('properties/{property}/property-options', 'PropertyOptionController');
     });
@@ -111,19 +112,19 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
 Route::get('/','App\Http\Controllers\MainController@index')->name('index');
 Route::get('/categories', 'App\Http\Controllers\MainController@categories')->name('categories');
 
-Route::post('subscription/{product}', 'App\Http\Controllers\MainController@subscribe')->name('subscription');
+Route::post('subscription/{sku}', 'App\Http\Controllers\MainController@subscribe')->name('subscription');
 Route::group(['prefix' => 'basket'], function(){
-    Route::post('/add/{product}', 'App\Http\Controllers\BasketController@basketAdd')->name('basket-add');
+    Route::post('/add/{sku}', 'App\Http\Controllers\BasketController@basketAdd')->name('basket-add');
     Route::group(['middleware' => 'basket_not_empty'], function(){
         Route::get('/', 'App\Http\Controllers\BasketController@basket')->name('basket');
         Route::get('/order', 'App\Http\Controllers\BasketController@order')->name('basket-place');
-        Route::post('/remove/{product}', 'App\Http\Controllers\BasketController@basketRemove')->name('basket-remove');
+        Route::post('/remove/{sku}', 'App\Http\Controllers\BasketController@basketRemove')->name('basket-remove');
         Route::post('/order', 'App\Http\Controllers\BasketController@orderConfirm')->name('basket-confirm');
     });
 });
 
 Route::get('/store/{category}', 'App\Http\Controllers\MainController@category')->name('category');
-Route::get('/store/{category}/{product?}', 'App\Http\Controllers\MainController@product')->name('product');
+Route::get('/store/{category}/{product}/{sku}', 'App\Http\Controllers\MainController@sku')->name('sku');
 
 
 

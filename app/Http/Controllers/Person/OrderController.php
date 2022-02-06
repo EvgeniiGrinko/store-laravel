@@ -13,11 +13,11 @@ class OrderController extends Controller
 
         return view('auth.orders.index', compact('orders'));
 
-        
+
     }
     public function order(Order $order){
-        $products = $order->products()->withTrashed()->get();
-        
-        return view('auth.orders.show', compact('order', 'products'));
+        $skus = $order->skus()->withTrashed()->get();
+
+        return view('auth.orders.show', compact('order', 'skus'));
     }
 }

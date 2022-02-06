@@ -25,12 +25,8 @@ class Product extends Model
         return $this->hasMany(Sku::class);
     }
 
-    public function isAvailable(){
-        return !$this->trashed() && $this->count > 0;
-    }
-
     public function properties(){
-        return $this->belongsToMany(Property::class);
+        return $this->belongsToMany(Property::class, 'property_product')->withTimestamps();
     }
 
     public function scopeByCode($query, $code) {
@@ -40,15 +36,8 @@ class Product extends Model
     public function Category() {
         return $this->belongsTo(Category::class);
     }
-    public function getPriceForCount(){
-        if(!is_null($this->pivot)){
-            return $this->pivot->count * $this->price;
-        }
-        return $this->price;
-    }
-    public function getPriceAttribute(){
-        return round(CurrencyConversion::convert( $this->attributes["price"]),2);
-    }
+
+
 
 
     public function scopeHit($query){

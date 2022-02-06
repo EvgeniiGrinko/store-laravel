@@ -3,6 +3,7 @@
 namespace App\Classes;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Sku;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderCreated;
@@ -42,18 +43,14 @@ class Basket {
     }
 
     public function countAvailable($updateCount = false){
-//        $products = ;
-        foreach($this->order->products as $orderProduct){
-//            $productCount = $products->where('code', $orderProduct->code)->first()->count;
-
-            if($orderProduct->countInOrder > $orderProduct->count){
-
+        foreach($this->order->skus as $orderSku){
+            if($orderSku->countInOrder > $orderSku->count){
                 return false;
             }
             if ($updateCount) {
 
-                $orderProduct->count -= $orderProduct->countInOrder;
-                Product::where('code', $orderProduct->code)->first()->update(['count' => $orderProduct->count]);
+                $orderSku->count -= $orderSku->countInOrder;
+                Sku::where('product_id', $orderSku->product->id)->first()->update(['count' => $orderSku->count]);
             }}
 
 
@@ -71,13 +68,13 @@ class Basket {
     }
 
 
-    public function removeProduct(Product $product){
-        if ($this->order->products->contains($product)){
-            $pivotRow = $this->order->products->where('id', $product->id)->first();
+    public function removeProduct(Sku $sku){
+        if ($this->order->skus->contains($sku)){
+            $pivotRow = $this->order->skus->where('id', $sku->id)->first();
             if($pivotRow->countInOrder < 2) {
-                $collection = $this->order->products;
+                $collection = $this->order->skus;
                 foreach ($collection as $key => $item) {
-                if ($item->name == $product->name) {
+                if ($item->name == $sku->name) {
                  $collection->pull($key);
                     }
                 }
@@ -87,19 +84,19 @@ class Basket {
         }
     }
 
-    public function addProduct(Product $product){
-        if ($this->order->products->contains($product)){
-            $pivotRow = $this->order->products->where('id', $product->id)->first();
-            if ($pivotRow->countInOrder >= $product->count){
+    public function addSku(Sku $sku){
+        if ($this->order->skus->contains($sku)){
+            $pivotRow = $this->order->skus->where('id', $sku->id)->first();
+            if ($pivotRow->countInOrder >= $sku->count){
                 return false;
             }
             $pivotRow->countInOrder++;
         } else {
-            if($product->count == 0) {
+            if($sku->count == 0) {
                 return false;
             }
-            $product->countInOrder = 1;
-            $this->order->products->push($product);
+            $sku->countInOrder = 1;
+            $this->order->skus->push($sku);
         }
               return true;
     }

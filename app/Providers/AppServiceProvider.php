@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Sku;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
@@ -21,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
     }
-    
+
     /**
      * Bootstrap any application services.
      *
@@ -37,9 +38,9 @@ class AppServiceProvider extends ServiceProvider
         });
         Paginator::useBootstrap();
 
-        Product::observe(ProductObserver::class);
+        Sku::observe(ProductObserver::class);
     }
 
-    
+
 
 }

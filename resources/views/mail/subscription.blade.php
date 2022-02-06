@@ -1,5 +1,5 @@
-Уважаемый клиент, товар {{$product->__('name'))}} появился в наличии,
-<a href="{{route('product', [$product->category->code, $product->code])}}">узнать подробности</a>
+Уважаемый клиент, товар {{$sku->product->__('name')}} появился в наличии,
+<a href="{{route('sku', [$sku->product->category->code, $sku->product->code, $sku])}}">узнать подробности</a>
 <br>
 <br>
 <p>С уважением,</p>

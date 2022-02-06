@@ -11,7 +11,7 @@ class Property extends Model
 {
     use HasFactory, Translatable, SoftDeletes;
     protected $fillable = ['name', 'name_en'];
-    public function propertyOption()
+    public function propertyOptions()
         {
             return $this->hasMany(PropertyOption::class);
         }
