@@ -90,138 +90,138 @@ class ContentSeeder extends Seeder
                 'description_en' => 'Cellular phones will make your life more connected',
                 'image' => 'categories/mobiles.jpeg',
                 'products' =>
-                [
                     [
-                        'name'=> 'IPhone X 64GB',
-                        'name_en'=> 'IPhone X 64GB',
-                        'code' => 'iphone_x_64',
-                        'description' => 'Super technological device',
-                        'description_en' => 'Super technological device',
-                        'image' => 'products/iphone_x_64.jpeg',
-                        'properties' => [
-                            1,2,
+                        [
+                            'name' => 'IPhone X 64GB',
+                            'name_en' => 'IPhone X 64GB',
+                            'code' => 'iphone_x_64',
+                            'description' => 'Super technological device',
+                            'description_en' => 'Super technological device',
+                            'image' => 'products/iphone_x_64.jpeg',
+                            'properties' => [
+                                1, 2,
+                            ],
+                            'options' => [
+                                [
+                                    1, 7,
+                                ],
+                                [
+                                    1, 8,
+                                ],
+                                [
+                                    2, 7,
+                                ],
+                                [
+                                    2, 8,
+                                ],
+                                [
+                                    3, 7,
+                                ],
+                                [
+                                    3, 8,
+                                ],
+                                [
+                                    4, 7,
+                                ],
+                                [
+                                    4, 8,
+                                ],
+                            ],
                         ],
-                        'options' => [
-                            [
-                                1, 7,
+                        [
+                            'name' => 'IPhone X 256GB',
+                            'name_en' => 'IPhone X 256GB',
+                            'code' => 'iphone_x_256',
+                            'description' => 'Technologies are in your pocket.',
+                            'description_en' => 'Technologies are in your pocket.',
+                            'image' => 'products/iphone_x_256.webp',
+                            'properties' => [
+                                1, 2,
                             ],
-                            [
-                                1, 8,
+                            'options' => [
+                                [
+                                    1, 8,
+                                ],
+                                [
+                                    1, 9,
+                                ],
+                                [
+                                    2, 8,
+                                ],
+                                [
+                                    2, 9,
+                                ],
+                                [
+                                    3, 8,
+                                ],
+                                [
+                                    3, 9,
+                                ],
+                                [
+                                    4, 8,
+                                ],
+                                [
+                                    4, 9,
+                                ],
                             ],
-                            [
-                                2, 7,
+                        ],
+                        [
+                            'name' => 'Samsung A71',
+                            'name_en' => 'Samsung A71',
+                            'code' => 'samsung_a71',
+                            'description' => 'Smart and perfect for a reasonable price',
+                            'description_en' => 'Smart and perfect for a reasonable price',
+                            'image' => 'products/samsung_a71.jpeg',
+                            'properties' => [
+                                1, 2,
                             ],
-                            [
-                                2, 8,
+                            'options' => [
+                                [
+                                    1, 8,
+                                ],
+                                [
+                                    1, 9,
+                                ],
+                                [
+                                    2, 8,
+                                ],
+                                [
+                                    2, 9,
+                                ],
+                                [
+                                    3, 8,
+                                ],
+                                [
+                                    3, 9,
+                                ],
+                                [
+                                    4, 8,
+                                ],
+                                [
+                                    4, 9,
+                                ],
                             ],
-                            [
-                                3, 7,
+                        ],
+                        [
+                            'name' => 'Huawei Honor P90',
+                            'name_en' => 'Huawei Honor P90',
+                            'code' => 'huawei_honor_p90',
+                            'description' => 'The most selling phone in South Korea',
+                            'description_en' => 'The most selling phone in South Korea',
+                            'image' => 'products/huawei_honor_p90.jpeg',
+                            'properties' => [
+                                1, 2,
                             ],
-                            [
-                                3, 8,
-                            ],
-                            [
-                                4, 7,
-                            ],
-                            [
-                                4, 8,
+                            'options' => [
+                                [
+                                    2, 7,
+                                ],
+                                [
+                                    2, 8,
+                                ],
                             ],
                         ],
                     ],
-                    [
-                        'name'=> 'IPhone X 256GB',
-                        'name_en'=> 'IPhone X 256GB',
-                        'code' => 'iphone_x_256',
-                        'description' => 'Technologies are in your pocket.',
-                        'description_en' => 'Technologies are in your pocket.',
-                        'image' => 'products/iphone_x_256.webp',
-                        'properties' => [
-                        1,2,
-                    ],
-                        'options' => [
-                            [
-                                1, 8,
-                            ],
-                            [
-                                1, 9,
-                            ],
-                            [
-                                2, 8,
-                            ],
-                            [
-                                2, 9,
-                            ],
-                            [
-                                3, 8,
-                            ],
-                            [
-                                3, 9,
-                            ],
-                            [
-                                4, 8,
-                            ],
-                            [
-                                4, 9,
-                            ],
-                        ],
-                    ],
-                    [
-                        'name'=> 'Samsung A71',
-                        'name_en'=> 'Samsung A71',
-                        'code' => 'samsung_a71',
-                        'description' => 'Smart and perfect for a reasonable price',
-                        'description_en' => 'Smart and perfect for a reasonable price',
-                        'image' => 'products/samsung_a71.jpeg',
-                        'properties' => [
-                            1,2,
-                        ],
-                        'options' => [
-                            [
-                                1, 8,
-                            ],
-                            [
-                                1, 9,
-                            ],
-                            [
-                                2, 8,
-                            ],
-                            [
-                                2, 9,
-                            ],
-                            [
-                                3, 8,
-                            ],
-                            [
-                                3, 9,
-                            ],
-                            [
-                                4, 8,
-                            ],
-                            [
-                                4, 9,
-                            ],
-                        ],
-                    ],
-                    [
-                        'name'=> 'Huawei Honor P90',
-                        'name_en'=> 'Huawei Honor P90',
-                        'code' => 'huawei_honor_p90',
-                        'description' => 'The most selling phone in South Korea',
-                        'description_en' => 'The most selling phone in South Korea',
-                        'image' => 'products/huawei_honor_p90.jpeg',
-                        'properties' => [
-                            1,2,
-                        ],
-                        'options' => [
-                            [
-                                2, 7,
-                            ],
-                            [
-                                2, 8,
-                            ],
-                        ],
-                    ],
-                ],
             ],
             [
                 'category_id' => 2,
@@ -233,16 +233,16 @@ class ContentSeeder extends Seeder
                 'image' => 'categories/portable.jpeg',
                 'products' => [
                     [
-                        'name'=> 'Camera GoPro 2',
-                        'name_en'=> 'Camera GoPro 2',
+                        'name' => 'Camera GoPro 2',
+                        'name_en' => 'Camera GoPro 2',
                         'code' => 'go_pro2',
                         'description' => 'PROactive camera for capturing your best emotions',
                         'description_en' => 'PROactive camera for capturing your best emotions',
                         'image' => 'products/go_pro2.jpeg',
                     ],
                     [
-                        'name'=> 'Samsung EarBuds 3',
-                        'name_en'=> 'Samsung EarBuds 3',
+                        'name' => 'Samsung EarBuds 3',
+                        'name_en' => 'Samsung EarBuds 3',
                         'code' => 'samsung_earbuds3',
                         'description' => 'The most pure sound easily connected your phone and your heart through ears',
                         'description_en' => 'The most pure sound easily connected your phone and your heart through ears',
@@ -263,8 +263,8 @@ class ContentSeeder extends Seeder
                         ],
                     ],
                     [
-                        'name'=> 'Apple AirPods 2',
-                        'name_en'=> 'Apple AirPods 2',
+                        'name' => 'Apple AirPods 2',
+                        'name_en' => 'Apple AirPods 2',
                         'code' => 'apple_airpods2',
                         'description' => 'Legendary headphones for the best expirience with your favorite songs',
                         'description_en' => 'Legendary headphones for the best expirience with your favorite songs',
@@ -296,8 +296,8 @@ class ContentSeeder extends Seeder
                 'image' => 'categories/appliances.jpeg',
                 'products' => [
                     [
-                        'name'=> 'Philips Teapot Ml',
-                        'name_en'=> 'Philips Teapot Ml',
+                        'name' => 'Philips Teapot Ml',
+                        'name_en' => 'Philips Teapot Ml',
                         'code' => 'philips_teapot_s',
                         'description' => 'Hot water for your drinks 24/7',
                         'description_en' => 'Hot water for your drinks 24/7',
@@ -318,8 +318,8 @@ class ContentSeeder extends Seeder
                         ],
                     ],
                     [
-                        'name'=> 'Haier Dishwasher',
-                        'name_en'=> 'Haier Dishwasher',
+                        'name' => 'Haier Dishwasher',
+                        'name_en' => 'Haier Dishwasher',
                         'code' => 'haier_dishwasher',
                         'description' => 'Cleansiness is the second name of your dining tableware from now on',
                         'description_en' => 'Cleansiness is the second name of your dining tableware from now on',
@@ -340,14 +340,14 @@ class ContentSeeder extends Seeder
                         ],
                     ],
                     [
-                        'name'=> 'Apple Station Smart Home',
-                        'name_en'=> 'Apple Station Smart Home',
+                        'name' => 'Apple Station Smart Home',
+                        'name_en' => 'Apple Station Smart Home',
                         'code' => 'aplle_station_smart_home',
                         'description' => 'Your home can be protected from invasions',
                         'description_en' => 'Your home can be protected from invasions',
                         'image' => 'products/aplle_station_smart_home.jpeg',
                         'properties' => [
-                            1,2,
+                            1, 2,
                         ],
                         'options' => [
                             [
@@ -360,7 +360,7 @@ class ContentSeeder extends Seeder
                                 6,
                             ],
                         ],
-                        ],
+                    ],
 
 
                 ],
@@ -376,16 +376,16 @@ class ContentSeeder extends Seeder
             foreach ($products as $product) {
 //                dd(array_key_exists('0',$product));
                 $product['created_at'] = Carbon::now();
-                $product['hit'] = !boolval(rand(0,3));
-                $product['recommended'] = rand(0,1);
-                $product['new'] = rand(0,1);
+                $product['hit'] = !boolval(rand(0, 3));
+                $product['recommended'] = rand(0, 1);
+                $product['new'] = rand(0, 1);
                 $product['updated_at'] = Carbon::now();
                 $product['category_id'] = $categoryId;
-                if(isset($product['properties'])){
+                if (isset($product['properties'])) {
                     $properties = $product['properties'];
                     unset($product['properties']);
                 }
-                if(isset($product['options'])){
+                if (isset($product['options'])) {
                     $options = $product['options'];
                     unset($product['options']);
                 }
@@ -393,8 +393,8 @@ class ContentSeeder extends Seeder
                 $productId = DB::table('products')->insertGetId($product);
 
                 // property_product
-                if(isset($properties)){
-                    foreach($properties as $propertyId){
+                if (isset($properties)) {
+                    foreach ($properties as $propertyId) {
                         DB::table('property_product')->insert(
                             [
                                 'property_id' => $propertyId,
@@ -407,18 +407,18 @@ class ContentSeeder extends Seeder
                     }
                     unset($properties);
                 }
-                if(isset($options)){
-                    foreach($options as $sku_options){
+                if (isset($options)) {
+                    foreach ($options as $sku_options) {
                         $skuId = DB::table('skus')->insertGetId(
                             [
                                 'product_id' => $productId,
-                                'count' => rand(0,100),
+                                'count' => rand(0, 100),
                                 'price' => rand(5000, 150000),
                                 'created_at' => Carbon::now(),
                                 'updated_at' => Carbon::now(),
                             ]
                         );
-                        foreach($sku_options as $option){
+                        foreach ($sku_options as $option) {
                             $skuData['sku_id'] = $skuId;
                             $skuData['property_option_id'] = $option;
                             $skuData['created_at'] = Carbon::now();
@@ -434,7 +434,7 @@ class ContentSeeder extends Seeder
                     DB::table('skus')->insert(
                         [
                             'product_id' => $productId,
-                            'count' => rand(0,100),
+                            'count' => rand(0, 100),
                             'price' => rand(5000, 150000),
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),

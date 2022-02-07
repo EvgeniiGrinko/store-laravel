@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function(){
     Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'], function(){
         Route::resource('categories', 'CategoryController');
         Route::resource('products', 'ProductController');
+        Route::resource('coupons', 'CouponController');
         Route::resource('products/{product}/skus', 'SkuController');
         Route::resource('properties', 'PropertyController');
         Route::resource('properties/{property}/property-options', 'PropertyOptionController');
@@ -116,10 +117,12 @@ Route::post('subscription/{sku}', 'App\Http\Controllers\MainController@subscribe
 Route::group(['prefix' => 'basket'], function(){
     Route::post('/add/{sku}', 'App\Http\Controllers\BasketController@basketAdd')->name('basket-add');
     Route::group(['middleware' => 'basket_not_empty'], function(){
+
         Route::get('/', 'App\Http\Controllers\BasketController@basket')->name('basket');
         Route::get('/order', 'App\Http\Controllers\BasketController@order')->name('basket-place');
         Route::post('/remove/{sku}', 'App\Http\Controllers\BasketController@basketRemove')->name('basket-remove');
         Route::post('/order', 'App\Http\Controllers\BasketController@orderConfirm')->name('basket-confirm');
+        Route::post('coupon', 'App\Http\Controllers\BasketController@setCoupon')->name('set-coupon');
     });
 });
 

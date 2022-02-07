@@ -26,7 +26,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(['master', 'categories'],'App\ViewComposers\CategoriesComposer');
-        View::composer(['master'],'App\ViewComposers\CurrenciesComposer');
+        View::composer(['master', 'auth.coupons.form', 'auth.coupons.show'],'App\ViewComposers\CurrenciesComposer');
         View::composer(['master'],'App\ViewComposers\BestProductsComposer');
         View::composer(['*'],function($view){
             $currencySymbol = CurrencyConversion::getCurrencySymbol();

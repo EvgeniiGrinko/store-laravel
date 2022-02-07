@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {    use HasFactory;
 
-    protected $fillable = ['user_id', 'currency_id', 'sum'];
+    protected $fillable = ['user_id', 'currency_id', 'sum', 'coupon_id'];
 
     public function skus(){
         return $this->belongsToMany(Sku::class)->withPivot(['count', 'price'])->withTimestamps();
+    }
+
+    public function coupon(){
+        return $this->belongsTo(Coupon::class);
     }
 
     public function scopeActive($query){
@@ -26,11 +30,14 @@ class Order extends Model
         return $sum;
     }
 
-    public function getFullSum(){
+    public function getFullSum($withCoupon = true){
 
         $sum = 0;
         foreach($this->skus as $sku){
             $sum += $sku->price * $sku->countInOrder;
+        }
+        if($withCoupon && $this->hasCoupon()){
+            $sum = $this->coupon->applyCost($sum, $this->currency);
         }
         return $sum;
 
@@ -54,5 +61,8 @@ class Order extends Model
         session()->forget('order');
         return true;
 
+    }
+    public function hasCoupon(){
+        return $this->coupon;
     }
 }

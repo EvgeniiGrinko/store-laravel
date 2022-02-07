@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Classes;
+use App\Http\Requests\AddCouponRequest;
+use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Sku;
@@ -37,6 +39,11 @@ class Basket {
         }
 
     }
+    public function clearCoupon()
+    {
+
+        $this->order->coupon()->dissociate();
+    }
 
     public function getOrder(){
         return $this->order;
@@ -56,7 +63,9 @@ class Basket {
 
         return true;
     }
-
+    public function setCoupon(Coupon $coupon){
+        $this->order->coupon()->associate($coupon);
+    }
     public function saveOrder($name, $phone, $email) {
 
         if (!$this->countAvailable(true)){

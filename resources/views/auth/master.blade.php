@@ -24,6 +24,7 @@
                                 <li ><a href="{{route('categories.index')}}">Категории</a></li>
                                 <li ><a href="{{route('products.index')}}">Товары</a></li>
                                 <li ><a href="{{route('properties.index')}}">Свойства</a></li>
+                                <li ><a href="{{route('coupons.index')}}">Купоны</a></li>
                                 <li ><a href="{{route('orders')}}">Заказы</a></li>
                                 @else <li ><a href="{{ route('person.orders.index')}}">Мои Заказы</a></li>
                                 @endadmin
