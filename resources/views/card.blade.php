@@ -5,11 +5,11 @@
             @if($sku->product->isRecommended())<span class="badge badge-warning">Рекомендуемые</span>@endif
             @if($sku->product->isHit())<span class="badge badge-danger">Хит продаж</span>@endif
         </div>
-        <a href="{{ route('sku', [$sku->product->category, $sku->product->code, $sku])}}">
+        <a href="{{ route('sku', [$sku->product->category->code, $sku->product->code, $sku])}}">
             <img src="{{ Storage::url($sku->product->image) }}" alt="{{$sku->product->__('name')}} image">
         </a>
         <div class="caption">
-            <a href="{{ route('sku', [$sku->product->category, $sku->product->code, $sku])}}">
+            <a href="{{ route('sku', [$sku->product->category->code, $sku->product->code, $sku])}}">
                 <h3>{{$sku->product->__('name')}}</h3>
             </a>
 
