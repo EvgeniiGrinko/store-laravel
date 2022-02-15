@@ -15,7 +15,7 @@ class Sku extends Model
     use SoftDeletes;
     use Translatable;
     protected $fillable = ['product_id', 'count', 'price'];
-    protected $visible = [ 'id', 'count', 'price', 'product_name', 'property_options'];
+    protected $visible = [ 'id', 'count', 'price', 'product_name', 'options'];
 
     public function product(){
         return $this->belongsTo(Product::class);
@@ -47,7 +47,7 @@ class Sku extends Model
     {
         return $this->product->name;
     }
-    public function getPropertyOptionsAttribute()
+    public function getOptionsAttribute()
     {
         $collections = $this->propertyOptions()->get();
         $options = [];

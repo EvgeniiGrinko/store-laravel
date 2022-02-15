@@ -25,6 +25,7 @@
                                 <li ><a href="{{route('products.index')}}">Товары</a></li>
                                 <li ><a href="{{route('properties.index')}}">Свойства</a></li>
                                 <li ><a href="{{route('coupons.index')}}">Купоны</a></li>
+                                <li ><a href="{{route('merchants.index')}}">Поставщики</a></li>
                                 <li ><a href="{{route('orders')}}">Заказы</a></li>
                                 @else <li ><a href="{{ route('person.orders.index')}}">Мои Заказы</a></li>
                                 @endadmin
@@ -70,6 +71,15 @@
                     </div>
                 </div>
             </nav>
+                <div class="starter-template">
+                    @if (session()->has('success'))
+                        <p class="alert alert-success">{{session()->get('success')}}</p>
+                    @endif
+                    @if (session()->has('warning'))
+                        <p class="alert alert-warning">{{session()->get('warning')}}</p>
+                    @endif
+                </div>
+            </div>
             <div class="py-4">
                 <div class="container">
                     @yield('content')

@@ -25,7 +25,6 @@ class ResetController extends Controller
         session()->forget('full_order_sum');
 
         session()->flash('success', __('main.project_reset'));
-        // dd('reset');
         return redirect()->route('index');
     }
 }

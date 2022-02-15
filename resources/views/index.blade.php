@@ -41,7 +41,6 @@
                 </div>
             </div>
         </form>
-    <div class="row">
         @foreach ($skus as $sku)
         @include('card', compact('sku'))
         @endforeach

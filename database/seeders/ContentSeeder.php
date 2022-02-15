@@ -92,8 +92,8 @@ class ContentSeeder extends Seeder
                 'products' =>
                     [
                         [
-                            'name' => 'IPhone X 64GB',
-                            'name_en' => 'IPhone X 64GB',
+                            'name' => 'IPhone XI',
+                            'name_en' => 'IPhone XI',
                             'code' => 'iphone_x_64',
                             'description' => 'Super technological device',
                             'description_en' => 'Super technological device',
@@ -129,9 +129,9 @@ class ContentSeeder extends Seeder
                             ],
                         ],
                         [
-                            'name' => 'IPhone X 256GB',
-                            'name_en' => 'IPhone X 256GB',
-                            'code' => 'iphone_x_256',
+                            'name' => 'IPhone X',
+                            'name_en' => 'IPhone X',
+                            'code' => 'iphone_x',
                             'description' => 'Technologies are in your pocket.',
                             'description_en' => 'Technologies are in your pocket.',
                             'image' => 'products/iphone_x_256.webp',

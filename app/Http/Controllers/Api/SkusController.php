@@ -10,6 +10,7 @@ class SkusController extends Controller
 {
     public function getSkus()
     {
-     return Sku::with(['product', 'propertyOptions'])->available()->get()->append(['product_name', 'property_options']);
+
+     return Sku::with(['product', 'propertyOptions'])->available()->get()->append(['product_name', 'options']);
     }
 }

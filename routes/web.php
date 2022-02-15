@@ -32,109 +32,116 @@ Auth::routes([
 Route::get('/locale/{locale}', 'App\Http\Controllers\MainController@changeLocale')->name('locale');
 Route::get('/currency/{currency}', 'App\Http\Controllers\MainController@changeCurrency')->name('currency');
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout');
-Route::middleware(['set_locale'])->group(function(){
+Route::middleware(['set_locale'])->group(function () {
     Route::get('reset', 'App\Http\Controllers\ResetController@reset')->name('reset');
 
-Route::middleware(['auth'])->group(function(){
-    Route::group([
-        'prefix' => 'person',
-        'namespace' => 'App\Http\Controllers\Person',
-        'as' => 'person.'
-    ], function () {
-        Route::get('/orders','OrderController@index')->name('orders.index');
-        Route::get('/orders/{order}','OrderController@order')->name('orders.show');
-    });
-    Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'], function(){
-        Route::resource('categories', 'CategoryController');
-        Route::resource('products', 'ProductController');
-        Route::resource('coupons', 'CouponController');
-        Route::resource('products/{product}/skus', 'SkuController');
-        Route::resource('properties', 'PropertyController');
-        Route::resource('properties/{property}/property-options', 'PropertyOptionController');
-    });
-    Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function(){
-            Route::get('/orders','App\Http\Controllers\OrdersController@index')->name('orders');
-            Route::get('/orders/{order}','App\Http\Controllers\OrdersController@order')->name('order');
+    Route::middleware(['auth'])->group(function () {
+        Route::group([
+            'prefix' => 'person',
+            'namespace' => 'App\Http\Controllers\Person',
+            'as' => 'person.'
+        ], function () {
+            Route::get('/orders', 'OrderController@index')->name('orders.index');
+            Route::get('/orders/{order}', 'OrderController@order')->name('orders.show');
+        });
+        Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'], function () {
+            Route::resource('categories', 'CategoryController');
+            Route::resource('products', 'ProductController');
+            Route::resource('merchants', 'MerchantController');
+            Route::get('merchant/{merchant}/update_token', 'MerchantController@updateToken')->name('update_token');
+            Route::resource('coupons', 'CouponController');
+            Route::resource('products/{product}/skus', 'SkuController');
+            Route::resource('properties', 'PropertyController');
+            Route::resource('properties/{property}/property-options', 'PropertyOptionController');
+        });
+        Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
+            Route::get('/orders', 'App\Http\Controllers\OrdersController@index')->name('orders');
+            Route::get('/orders/{order}', 'App\Http\Controllers\OrdersController@order')->name('order');
 
         });
 
-});
-
-Route::get('/register', [RegisteredUserController::class, 'create'])
-                ->middleware('guest')
-                ->name('register');
-
-Route::post('/register', [RegisteredUserController::class, 'store'])
-                ->middleware('guest');
-
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-                ->middleware('guest')
-                ->name('login');
-
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])
-                ->middleware('guest');
-
-Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
-                ->middleware('guest')
-                ->name('password.request');
-
-Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
-                ->middleware('guest')
-                ->name('password.email');
-
-Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
-                ->middleware('guest')
-                ->name('password.reset');
-
-Route::post('/reset-password', [NewPasswordController::class, 'store'])
-                ->middleware('guest')
-                ->name('password.update');
-
-Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
-                ->middleware('auth')
-                ->name('verification.notice');
-
-Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-                ->middleware(['auth', 'signed', 'throttle:6,1'])
-                ->name('verification.verify');
-
-Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-                ->middleware(['auth', 'throttle:6,1'])
-                ->name('verification.send');
-
-Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show'])
-                ->middleware('auth')
-                ->name('password.confirm');
-
-Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store'])
-                ->middleware('auth');
-
-
-Route::get('/','App\Http\Controllers\MainController@index')->name('index');
-Route::get('/categories', 'App\Http\Controllers\MainController@categories')->name('categories');
-
-Route::post('subscription/{sku}', 'App\Http\Controllers\MainController@subscribe')->name('subscription');
-Route::group(['prefix' => 'basket'], function(){
-    Route::post('/add/{sku}', 'App\Http\Controllers\BasketController@basketAdd')->name('basket-add');
-    Route::group(['middleware' => 'basket_not_empty'], function(){
-
-        Route::get('/', 'App\Http\Controllers\BasketController@basket')->name('basket');
-        Route::get('/order', 'App\Http\Controllers\BasketController@order')->name('basket-place');
-        Route::post('/remove/{sku}', 'App\Http\Controllers\BasketController@basketRemove')->name('basket-remove');
-        Route::post('/order', 'App\Http\Controllers\BasketController@orderConfirm')->name('basket-confirm');
-        Route::post('coupon', 'App\Http\Controllers\BasketController@setCoupon')->name('set-coupon');
     });
+
+    Route::get('/register', [RegisteredUserController::class, 'create'])
+        ->middleware('guest')
+        ->name('register');
+
+    Route::post('/register', [RegisteredUserController::class, 'store'])
+        ->middleware('guest');
+
+    Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+        ->middleware('guest')
+        ->name('login');
+
+    Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+        ->middleware('guest');
+
+    Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+        ->middleware('guest')
+        ->name('password.request');
+
+    Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+        ->middleware('guest')
+        ->name('password.email');
+
+    Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
+        ->middleware('guest')
+        ->name('password.reset');
+
+    Route::post('/reset-password', [NewPasswordController::class, 'store'])
+        ->middleware('guest')
+        ->name('password.update');
+
+    Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
+        ->middleware('auth')
+        ->name('verification.notice');
+
+    Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+        ->middleware(['auth', 'signed', 'throttle:6,1'])
+        ->name('verification.verify');
+
+    Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+        ->middleware(['auth', 'throttle:6,1'])
+        ->name('verification.send');
+
+    Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show'])
+        ->middleware('auth')
+        ->name('password.confirm');
+
+    Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store'])
+        ->middleware('auth');
+
+
+    Route::get('/', 'App\Http\Controllers\MainController@index')->name('index');
+    Route::get('/categories', 'App\Http\Controllers\MainController@categories')->name('categories');
+
+    Route::post('subscription/{sku}', 'App\Http\Controllers\MainController@subscribe')->name('subscription');
+    Route::group(['prefix' => 'basket'], function () {
+        Route::post('/add/{sku}', 'App\Http\Controllers\BasketController@basketAdd')->name('basket-add');
+        Route::group(['middleware' => 'basket_not_empty'], function () {
+
+            Route::get('/', 'App\Http\Controllers\BasketController@basket')->name('basket');
+            Route::get('/order', 'App\Http\Controllers\BasketController@order')->name('basket-place');
+            Route::post('/remove/{sku}', 'App\Http\Controllers\BasketController@basketRemove')->name('basket-remove');
+            Route::post('/order', 'App\Http\Controllers\BasketController@orderConfirm')->name('basket-confirm');
+            Route::post('coupon', 'App\Http\Controllers\BasketController@setCoupon')->name('set-coupon');
+        });
+    });
+
+    Route::get('/store/{category}', 'App\Http\Controllers\MainController@category')->name('category');
+    Route::get('/store/{category}/{product}/{sku}', 'App\Http\Controllers\MainController@sku')->name('sku');
+
+
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth'])->name('dashboard');
+
+});
+Route::middleware(['auth'])->group(function () {
+    Route::get('/questionnaires', 'App\Http\Controllers\researchController@index')->name('questionnaires');
+    Route::get('/questionnaire/{questionnaire}', 'App\Http\Controllers\researchController@show')->name('questionnaire');
+    Route::post('/answer/{questionnaire}/{question}/{user}', 'App\Http\Controllers\researchController@answer')->name('answer');
 });
 
-Route::get('/store/{category}', 'App\Http\Controllers\MainController@category')->name('category');
-Route::get('/store/{category}/{product}/{sku}', 'App\Http\Controllers\MainController@sku')->name('sku');
-
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-});
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

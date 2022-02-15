@@ -68,7 +68,6 @@ class MainController extends Controller{
         return view("product", compact( 'sku'));
     }
     public function subscribe(SubscriptionRequest $request, Sku $sku){
-//       dd($sku);
         Subscription::create(
             [
                 'email' => $request->email,
