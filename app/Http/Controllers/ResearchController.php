@@ -13,7 +13,6 @@ class ResearchController extends Controller
 {
     public function index()
     {
-
         $questionnaires = Questionnaire::get();
         return view('research.index', compact('questionnaires'));
     }
@@ -37,7 +36,6 @@ class ResearchController extends Controller
 
     public function answer(Request $request, Questionnaire $questionnaire, Question $question, User $user)
     {
-
         $params = $request->all();
         unset($params['_token']);
         if ($params == []) {
