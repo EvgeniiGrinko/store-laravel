@@ -36,10 +36,11 @@ Route::middleware(['set_locale'])->group(function () {
     Route::get('reset', 'App\Http\Controllers\ResetController@reset')->name('reset');
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('/questionnaires', 'App\Http\Controllers\researchController@index')->name('questionnaires');
-        Route::get('/questionnaire/{questionnaire}', 'App\Http\Controllers\researchController@show')->name('questionnaire');
-        Route::post('/answer/{questionnaire}/{question}/{user}', 'App\Http\Controllers\researchController@answer')->name('answer');
-
+        Route::group(['namespace' => 'App\Http\Controllers'], function () {
+            Route::get('/questionnaires', 'ResearchController@index')->name('questionnaires');
+            Route::get('/questionnaire/{questionnaire}', 'ResearchController@show')->name('questionnaire');
+            Route::post('/answer/{questionnaire}/{question}/{user}', 'ResearchController@answer')->name('answer');
+        });
         Route::group([
             'prefix' => 'person',
             'namespace' => 'App\Http\Controllers\Person',
@@ -134,7 +135,6 @@ Route::middleware(['set_locale'])->group(function () {
 
     Route::get('/store/{category}', 'App\Http\Controllers\MainController@category')->name('category');
     Route::get('/store/{category}/{product}/{sku}', 'App\Http\Controllers\MainController@sku')->name('sku');
-
 
 
     Route::get('/dashboard', function () {
