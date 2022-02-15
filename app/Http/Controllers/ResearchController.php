@@ -55,7 +55,6 @@ class ResearchController extends Controller
                     if (($questionOption->value != $value && $questionOption->id == $key) || (($questionOption->value == $value && $questionOption->id != $key))) {
                         session()->flash('warning', 'Запрещено менять значения в коде.');
                         return redirect()->back();
-
                     }
                 }
             }
