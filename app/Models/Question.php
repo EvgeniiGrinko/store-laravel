@@ -20,31 +20,11 @@ class Question extends Model
         return $this->hasMany(QuestionOption::class);
     }
 
-    public static function mix($words)
+    public function Answers()
     {
-        $result = [];
-//количество элементов массива
-        $n = count($words);
-//ищем факториал
-        $f = 1;
-        for ($i = 1; $i <= $n; $i++) $f = $f * $i;{
-        for ($i = 0; $i < $f; $i++) {
-            $pos = $i % ($n - 1);
-            if ($pos == 0) $first = array_shift($words);
-            $result[$i] = [];
-            for ($j = 0; $j < $n - 1; $j++) {
-                if ($j == $pos) $result[$i][] = $first;
-                $result[$i][] = $words[$j];
-            }
-            if ($pos == ($n - 2)) {
-                $words[] = $first;
-            }
-        }
+        return $this->hasMany(Answer::class);
     }
 
-
-        return ($result);
-    }
 
     public function combinations()
     {

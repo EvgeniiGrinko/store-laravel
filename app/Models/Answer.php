@@ -8,18 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Answer extends Model
 {
     use HasFactory;
+
     protected $fillable = ['answer', 'question_id', 'questionnaire_id', 'user_id'];
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
+
+    }
 
     public function findGivenAnswers($questionId)
     {
-        $question = Question::where('id',$questionId)->first();
+        $question = Question::where('id', $questionId)->first();
         $combinations = $question->combinations();
 
         $answer = $this->answer;
 
 
-        usort($combinations, function ($a, $b)
-        {
+        usort($combinations, function ($a, $b) {
             if ($a == $b) {
                 return 0;
             }
@@ -27,7 +33,7 @@ class Answer extends Model
         });
         $data = [];
 
-        $result = self::recursive($answer, $combinations, $data );
+        $result = self::recursive($answer, $combinations, $data);
         $tmp = [];
         foreach ($result as $k => $v) {
             if (array_key_exists($v, $tmp)) {
@@ -36,37 +42,32 @@ class Answer extends Model
                 $tmp[$v] = true;
             }
         }
-        dd($result);
-
-
+        return $result;
 
 
     }
 
-    public static function recursive($answer, $combinations,  & $data)
+    public static function recursive($answer, $combinations, &$data)
     {
 
 
-
-        for($i = 0; $i < count($combinations); $i++){
-            if($answer == 0 ){
+        for ($i = 0; $i < count($combinations); $i++) {
+            if ($answer == 0) {
                 $data[] = $answer;
                 return $data;
 
-            } else if($answer > $combinations[$i]) {
+            } else if ($answer > $combinations[$i]) {
                 array_push($data, $combinations[$i]);
                 $answer -= $combinations[$i];
-                self::recursive($answer,$combinations, $data);
-            }else if($answer % $combinations[$i] == 0) {
+                self::recursive($answer, $combinations, $data);
+            } else if ($answer % $combinations[$i] == 0) {
 
                 array_push($data, $combinations[$i]);
                 return $data;
-            } else if($answer < $combinations[$i]) {
+            } else if ($answer < $combinations[$i]) {
                 continue;
             }
         }
-
-
 
 
     }

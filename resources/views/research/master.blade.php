@@ -19,6 +19,9 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="{{route('questionnaires')}}">Все опросы</a>
             </div>
+            <div class="navbar-header">
+                @if(Route::currentRouteName() === 'questionnaires') <a class="navbar-brand" href="{{ route('reset')}}">Сбросить проект</a> @endif
+            </div>
             <div class="navbar-header navbar-right">
                 <ul class="nav navbar-nav navbar-right">
                     @guest
@@ -43,7 +46,7 @@
         </div>
     </div>
     <footer>
-        <div class="container"Ю
+        <div class="fixed-bottom">
         </div>
     </footer>
     </body>

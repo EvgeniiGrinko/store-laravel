@@ -142,6 +142,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/questionnaires', 'App\Http\Controllers\researchController@index')->name('questionnaires');
     Route::get('/questionnaire/{questionnaire}', 'App\Http\Controllers\researchController@show')->name('questionnaire');
     Route::post('/answer/{questionnaire}/{question}/{user}', 'App\Http\Controllers\researchController@answer')->name('answer');
+
 });
 
 require __DIR__ . '/auth.php';
